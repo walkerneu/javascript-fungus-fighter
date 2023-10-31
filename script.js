@@ -91,19 +91,27 @@ function fungusAttack () {
             document.getElementById("attack2").setAttribute("disabled", true);
             document.getElementById("attack3").setAttribute("disabled", true);
             document.getElementById("attack4").setAttribute("disabled", true);
-            let attackInterval = setInterval(fungusAttack, 6000);
-            let animationInterval = setInterval(fungusAnimation, 3000);
-            clearInterval(attackInterval);
-            clearInterval(animationInterval);
+            // I dont think these clearInterval's are doing anything??
+            // but I don't think it matters because I have the conditionals
+            clearInterval(fungusAttack);
+            clearInterval(fungusAnimation);
         }
     renderValues();
     }
 }
 
 function fungusAnimation () {
+    if (yourHP > 0 && fungusHP > 0 && attackPoints > 0){
     let fungus = document.getElementById("freaky-fungus")
     fungus.classList.toggle("walk");
     fungus.classList.toggle("attack");
+    }
+}
+function apRegenerate (){
+    if (attackPoints < 50 && fungusHP > 0 && yourHP > 0){
+        attackPoints += 5;
+    }
+    renderValues();
 }
 
 
@@ -123,5 +131,6 @@ function renderValues () {
 setInterval(fungusRegenerate, 1000);
 setInterval(fungusAttack, 6000);
 setInterval(fungusAnimation, 3000);
+setInterval(apRegenerate, 3000);
 
 onReady()
