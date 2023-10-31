@@ -73,14 +73,24 @@ function attack(attack) {
     renderValues ()
     //render shit
 }
+function fungusRegenerate () {
+    if (fungusHP < 50) {
+        fungusHP ++
+    }
+    renderValues ();
+}
 
 function renderValues () {
     document.getElementById("attack").textContent = '';
     document.getElementById("enemyHP").textContent = '';
     document.getElementById("attack").textContent = `${attackPoints} AP`;
     document.getElementById("enemyHP").textContent = `${fungusHP} HP`;
+    document.getElementById("ap-meter").value = attackPoints;
+    document.getElementById("hp-meter").value = fungusHP;
 
 }
+
+setInterval(fungusRegenerate, 1000);
 
 
 onReady()
