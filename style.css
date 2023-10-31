@@ -23,6 +23,12 @@ progress {
     margin: 0px auto -30px auto;
     display: block;
 }
+.hp-count progress {
+    margin-top: -60px;
+}
+.hp-count progress::-webkit-progress-value {
+    background: blue;
+}
 .attacks progress {
     margin-top: -60px;
 }
@@ -54,6 +60,13 @@ progress {
 	height: 588px;
 
     animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+.freaky-fungus.attack {
+    background: url('images/mushroom-idle.png') no-repeat -21px;
+    animation-name: idle;
+    animation-timing-function: steps(10);
+    animation: shake 0.5s;
     animation-iteration-count: infinite;
 }
 

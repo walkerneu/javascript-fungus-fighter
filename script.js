@@ -33,6 +33,7 @@ attackArray = [
 
 let fungusHP = 100;
 let attackPoints = 100;
+let yourHP = 100;
 
 function onReady() {
     console.log("Ready to go!")
@@ -63,8 +64,6 @@ function attack(attack) {
         fungus.classList.remove("walk");
         fungus.classList.add("jump");
         attackPoints = 0
-        // let disabledAttacks = document.getElementsByClassName("attacks")
-        // button.setAttribute("disabled", true);
         document.getElementById("attack1").setAttribute("disabled", true);
         document.getElementById("attack2").setAttribute("disabled", true);
         document.getElementById("attack3").setAttribute("disabled", true);
@@ -80,17 +79,49 @@ function fungusRegenerate () {
     renderValues ();
 }
 
+function fungusAttack () {
+    if (fungusHP > 0){
+        yourHP -= 30
+        if (yourHP <= 0){
+            let fungus = document.getElementById("freaky-fungus")
+            fungus.classList.remove("walk", "attack");
+            fungus.classList.add("jump");
+            yourHP = 0
+            document.getElementById("attack1").setAttribute("disabled", true);
+            document.getElementById("attack2").setAttribute("disabled", true);
+            document.getElementById("attack3").setAttribute("disabled", true);
+            document.getElementById("attack4").setAttribute("disabled", true);
+            clearInterval(fungusAttack);
+            clearInterval(fungusAnimation)
+        }
+    renderValues();
+    }
+}
+
+function fungusAnimation () {
+    let fungus = document.getElementById("freaky-fungus")
+    fungus.classList.toggle("walk");
+    fungus.classList.toggle("attack");
+}
+
+
 function renderValues () {
     document.getElementById("attack").textContent = '';
     document.getElementById("enemyHP").textContent = '';
-    document.getElementById("attack").textContent = `${attackPoints} AP`;
-    document.getElementById("enemyHP").textContent = `${fungusHP} HP`;
+    document.getElementById("attack").textContent = `Attack Points: ${attackPoints}`;
+    document.getElementById("enemyHP").textContent = `Freaky Fungus: ${fungusHP}`;
     document.getElementById("ap-meter").value = attackPoints;
-    document.getElementById("hp-meter").value = fungusHP;
+    document.getElementById("enemyhp-meter").value = fungusHP;
+    document.getElementById("yourHP").textContent = '';
+    document.getElementById("yourHP").textContent = `Your HP: ${yourHP}`;
+    document.getElementById("hp-meter").value = yourHP;
 
 }
 
 setInterval(fungusRegenerate, 1000);
+setInterval(fungusAttack, 6000)
+setInterval(fungusAnimation, 3000)
 
+console.log(document.getElementById("freaky-fungus").classList)
 
 onReady()
