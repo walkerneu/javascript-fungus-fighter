@@ -60,11 +60,7 @@ function attack(attack) {
         fungusHP = 0
     }
     if (attackPoints <= 0){
-        let fungus = document.getElementById("freaky-fungus")
-        fungus.classList.remove("walk");
-        fungus.classList.add("jump");
         attackPoints = 0;
-        yourHP = 0;
         document.getElementById("attack1").setAttribute("disabled", true);
         document.getElementById("attack2").setAttribute("disabled", true);
         document.getElementById("attack3").setAttribute("disabled", true);
@@ -110,8 +106,15 @@ function fungusAnimation () {
     }
 }
 function apRegenerate (){
-    if (attackPoints < 50 && attackPoints > 0 && fungusHP > 0 && yourHP > 0){
-        attackPoints += 5;
+    if (attackPoints < 50 && fungusHP > 0 && yourHP > 0){
+        attackPoints += 10;
+    }
+    if (attackPoints > 0){
+        document.getElementById("attack1").removeAttribute("disabled");
+        document.getElementById("attack2").removeAttribute("disabled");
+        document.getElementById("attack3").removeAttribute("disabled");
+        document.getElementById("attack4").removeAttribute("disabled");
+
     }
     renderValues();
 }
@@ -133,6 +136,6 @@ function renderValues () {
 setInterval(fungusRegenerate, 1000);
 setInterval(fungusAttack, 6000);
 setInterval(fungusAnimation, 3000);
-setInterval(apRegenerate, 3000);
+setInterval(apRegenerate, 6000);
 
 onReady()
