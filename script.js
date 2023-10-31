@@ -74,7 +74,7 @@ function attack(attack) {
     //render shit
 }
 function fungusRegenerate () {
-    if (fungusHP < 50) {
+    if (fungusHP < 50 && fungusHP > 0) {
         fungusHP ++
     }
     renderValues ();
