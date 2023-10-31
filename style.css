@@ -139,6 +139,12 @@ body:has( .freaky-fungus.dead) {
     animation-iteration-count: 3;
 }
 
+body:has( .freaky-fungus.attack) {
+    animation: shake 0.5s;
+    animation-delay: 2.5s;
+    animation-iteration-count: 2;
+}
+
 /* https://www.w3schools.com/howto/howto_css_shake_image.asp */
 @keyframes shake {
   0% { transform: translate(1px, 1px) rotate(0deg); }

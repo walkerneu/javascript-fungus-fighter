@@ -91,8 +91,10 @@ function fungusAttack () {
             document.getElementById("attack2").setAttribute("disabled", true);
             document.getElementById("attack3").setAttribute("disabled", true);
             document.getElementById("attack4").setAttribute("disabled", true);
-            clearInterval(fungusAttack);
-            clearInterval(fungusAnimation)
+            let attackInterval = setInterval(fungusAttack, 6000);
+            let animationInterval = setInterval(fungusAnimation, 3000);
+            clearInterval(attackInterval);
+            clearInterval(animationInterval);
         }
     renderValues();
     }
@@ -119,9 +121,7 @@ function renderValues () {
 }
 
 setInterval(fungusRegenerate, 1000);
-setInterval(fungusAttack, 6000)
-setInterval(fungusAnimation, 3000)
-
-console.log(document.getElementById("freaky-fungus").classList)
+setInterval(fungusAttack, 6000);
+setInterval(fungusAnimation, 3000);
 
 onReady()
