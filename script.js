@@ -87,7 +87,8 @@ function fungusAttack () {
             let fungus = document.getElementById("freaky-fungus")
             fungus.classList.remove("walk", "attack");
             fungus.classList.add("jump");
-            yourHP = 0
+            yourHP = 0;
+            attackPoints = 0;
             document.getElementById("attack1").setAttribute("disabled", true);
             document.getElementById("attack2").setAttribute("disabled", true);
             document.getElementById("attack3").setAttribute("disabled", true);
