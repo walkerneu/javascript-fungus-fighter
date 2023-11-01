@@ -49,22 +49,40 @@ function onReady() {
 }
 
 function attack(attack) {
+    // Modify state based on the attack
     fungusHP -= attack.hitpoints;
     console.log(fungusHP);
     attackPoints -= attack.attackpoints;
     console.log(attackPoints);
+    
+    // Shit we do if the fungus is dead
     if (fungusHP <= 0){
         let fungus = document.getElementById("freaky-fungus")
         fungus.classList.remove("walk");
         fungus.classList.add("dead");
         fungusHP = 0
     }
+
+    if (attackPoints < 12){
+        document.getElementById("attack1").setAttribute("disabled", true);
+    }
+    if (attackPoints < 23){
+        document.getElementById("attack2").setAttribute("disabled", true);
+    }
+    if (attackPoints < 38){
+        document.getElementById("attack3").setAttribute("disabled", true);
+    }
+    if (attackPoints < 33){
+        document.getElementById("attack4").setAttribute("disabled", true);
+    }
+
+    // Shit we do if we don't have any attack points
     if (attackPoints <= 0){
         attackPoints = 0;
-        document.getElementById("attack1").setAttribute("disabled", true);
-        document.getElementById("attack2").setAttribute("disabled", true);
-        document.getElementById("attack3").setAttribute("disabled", true);
-        document.getElementById("attack4").setAttribute("disabled", true);
+        // document.getElementById("attack1").setAttribute("disabled", true);
+        // document.getElementById("attack2").setAttribute("disabled", true);
+        // document.getElementById("attack3").setAttribute("disabled", true);
+        // document.getElementById("attack4").setAttribute("disabled", true);
     }
     renderValues ()
     //render shit
@@ -109,12 +127,24 @@ function apRegenerate (){
     if (attackPoints < 50 && fungusHP > 0 && yourHP > 0){
         attackPoints += 10;
     }
-    if (attackPoints > 0){
-        document.getElementById("attack1").removeAttribute("disabled");
-        document.getElementById("attack2").removeAttribute("disabled");
-        document.getElementById("attack3").removeAttribute("disabled");
-        document.getElementById("attack4").removeAttribute("disabled");
+    // if (attackPoints > 0){
+    //     document.getElementById("attack1").removeAttribute("disabled");
+    //     document.getElementById("attack2").removeAttribute("disabled");
+    //     document.getElementById("attack3").removeAttribute("disabled");
+    //     document.getElementById("attack4").removeAttribute("disabled");
 
+    // }
+    if (attackPoints > 12){
+        document.getElementById("attack1").removeAttribute("disabled");
+    }
+    if (attackPoints > 23){
+        document.getElementById("attack2").removeAttribute("disabled");
+    }
+    if (attackPoints > 38){
+        document.getElementById("attack3").removeAttribute("disabled");
+    }
+    if (attackPoints > 33){
+        document.getElementById("attack4").removeAttribute("disabled");
     }
     renderValues();
 }
@@ -136,6 +166,6 @@ function renderValues () {
 setInterval(fungusRegenerate, 1000);
 setInterval(fungusAttack, 6000);
 setInterval(fungusAnimation, 3000);
-setInterval(apRegenerate, 6000);
+setInterval(apRegenerate, 5000);
 
 onReady()
